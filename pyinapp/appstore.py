@@ -34,8 +34,8 @@ class AppStoreValidator(object):
 
         try:
             api_response = requests.post(self.url, json=receipt_json).json()
-        except (ValueError, RequestException):
-            raise InAppValidationError('HTTP error')
+        except (ValueError, RequestException) as e:
+            raise InAppValidationError('HTTP error: {}'.format(e))
 
         status = api_response['status']
 
